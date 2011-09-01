@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+puts File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'ancestors'
+
+root = Node.new
+root.root = true
+root.name = 0
+
+populator = Populator.new
+populated_root = populator.populate root
+
+
