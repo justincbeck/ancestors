@@ -4,12 +4,40 @@ puts File.expand_path('../../lib', __FILE__)
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'ancestors'
+srand 1972
 
 root = Node.new
 root.root = true
-root.name = 0
 
 populator = Populator.new
 populated_root = populator.populate root
 
+finder = Finder.new populated_root
+search = ["dtwybwbx", "dtwybwbx"]
+deepest = finder.find search
 
+if !deepest.nil?
+  puts "Deepest Ancestor: " + deepest.name
+else
+  puts "Not Found!"
+end
+
+finder = Finder.new populated_root
+search = ["j8wb9fa6", "j8wb9fa6"]
+deepest = finder.find search
+
+if !deepest.nil?
+  puts "Deepest Ancestor: " + deepest.name
+else
+  puts "Not Found!"
+end
+
+finder = Finder.new populated_root
+search = ["dtwybwbx", "j8wb9fa6"]
+deepest = finder.find search
+
+if !deepest.nil?
+  puts "Deepest Ancestor: " + deepest.name
+else
+  puts "Not Found!"
+end

@@ -13,21 +13,17 @@ class Populator
 
   def add_kids relative_root
     left = Node.new
-    left.name = @counter
-
-    @counter += 1
-
     right = Node.new
-    right.name = @counter
-
-    @counter += 1
 
     relative_root.left = left
     relative_root.right = right
 
-    if @counter < 10
+    if @counter < 3
+      @counter += 1
       add_kids left
       add_kids right
     end
+
+    relative_root
   end
 end
