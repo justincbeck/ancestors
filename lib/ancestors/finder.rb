@@ -9,7 +9,6 @@ class Finder
 
   def find(root = nil, names)
     root = @root unless !root.nil?
-    puts "Current Root: " + root.name
     if root.find names
       @deepest = root
       find root.left, names
