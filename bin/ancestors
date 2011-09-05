@@ -11,11 +11,7 @@ populator = Populator.new
 populated_root = populator.populate root
 
 finder = Finder.new populated_root
-search = ["L11", "R12"]
+search = ["R20", "R28"]
 deepest = finder.find search
 
-if !deepest.nil?
-  puts "Deepest Ancestor: " + deepest.name
-else
-  puts "Not Found!"
-end
+puts "Deepest Ancestor: " + deepest.name

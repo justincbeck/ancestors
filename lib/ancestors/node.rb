@@ -12,16 +12,21 @@ class Node
   end
 
   def find_descendant descendant
+    found = false
+
     if !@left.nil? and @left.name.eql? descendant
-      true
+      found = true
     elsif !@right.nil? and @right.name.eql? descendant
-      true
-    elsif !@left.nil?
-      @left.find_descendant descendant
-    elsif !@right.nil?
-      @right.find_descendant descendant
-    else
-      false
+      found = true
     end
+
+    if !found and !@left.nil?
+      found = @left.find_descendant descendant
+    end
+    if !found and !@right.nil?
+      found = @right.find_descendant descendant
+    end
+
+    found
   end
 end
