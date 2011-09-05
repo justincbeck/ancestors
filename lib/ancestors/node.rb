@@ -1,15 +1,17 @@
 class Node
-  attr_accessor :root, :name, :left, :right
+  attr_accessor :name, :left, :right
 
-  def initialize
-    @root = false
+  def initialize name
+    @name = name
   end
 
   def find names
-    a = find_descendant(names[0])
-    b = find_descendant(names[1])
+    a = self.find_descendant(names[0])
+    b = self.find_descendant(names[1])
     (a and b)
   end
+
+  protected
 
   def find_descendant descendant
     found = false
@@ -23,6 +25,7 @@ class Node
     if !found and !@left.nil?
       found = @left.find_descendant descendant
     end
+
     if !found and !@right.nil?
       found = @right.find_descendant descendant
     end

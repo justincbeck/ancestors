@@ -1,14 +1,7 @@
 class Finder
-  @root
   @deepest
 
-  def initialize root
-    @root = root
-    @deepest
-  end
-
-  def find(root = nil, names)
-    root = @root unless !root.nil?
+  def find(root, names)
     if root.find names
       @deepest = root
       find root.left, names

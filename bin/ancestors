@@ -3,15 +3,26 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'ancestors'
 
-root = Node.new
-root.root = true
-root.name = "root"
+max_depth = ARGV[0]
+first = ARGV[1]
+second = ARGV[2]
 
-populator = Populator.new
-populated_root = populator.populate root
+if /\d+/.match max_depth and /\w\d{1,2}/.match first and /\w\d{1,2}/.match second
+  root = Node.new "root"
 
-finder = Finder.new populated_root
-search = ["R20", "R28"]
-deepest = finder.find search
+  populator = Populator.new max_depth.to_i
+  populated_root = populator.populate root
 
-puts "Deepest Ancestor: " + deepest.name
+  finder = Finder.new
+  search = [first, second]
+  deepest = finder.find populated_root, search
+
+  if deepest.nil?
+    puts "No common ancestor (first and/or second don't exist in the tree)."
+  else
+    puts "Deepest Ancestor: " + deepest.name
+  end
+else
+  puts "Usage: ancestors <first> <second>"
+end
+

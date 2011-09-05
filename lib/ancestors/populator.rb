@@ -1,35 +1,31 @@
 class Populator
-  @counter
-
   def initialize
     @row = 0
     @node_count = 0
   end
 
-  def populate root
-    add_kids root
+  def populate root, depth
+    @max_depth = depth
+
+    if @max_depth > 0
+      add_kids root
+    end
+
+    root
   end
 
   private
 
   def add_kids relative_root
-    @node_count += 1
+    if @row < @max_depth
+      @node_count += 1
+      relative_root.left = Node.new "L" + @node_count.to_s
+      @node_count += 1
+      relative_root.right = Node.new "R" + @node_count.to_s
 
-    left = Node.new
-    left.name = "L" + @node_count.to_s
-
-    @node_count += 1
-
-    right = Node.new
-    right.name = "R" + @node_count.to_s
-
-    relative_root.left = left
-    relative_root.right = right
-
-    if @row < 3
       @row += 1
-      add_kids left
-      add_kids right
+      add_kids relative_root.left
+      add_kids relative_root.right
       @row -= 1
     end
 
