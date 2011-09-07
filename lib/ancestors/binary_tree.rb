@@ -1,3 +1,0 @@
-class BinaryTree
-
-end
